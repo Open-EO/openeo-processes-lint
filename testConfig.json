@@ -1,0 +1,10 @@
+{
+	"folder": "./processes/",
+	"proposalsFolder": null,
+	"ignoredWords": [],
+	"anyOfRequired": [],
+	"subtypeSchemas": null,
+	"checkSubtypeSchemas": false,
+	"forbidDeprecatedTypes": false,
+	"verbose": false
+}
