@@ -4,8 +4,6 @@ const { runCLI } = require('@jest/core');
 const fs = require('fs');
 const path = require('path');
 
-const root = process.cwd();
-
 let [configFile] = process.argv.slice(2);
 if (typeof configFile !== 'string' || configFile.length === 0 || !configFile.endsWith('.json')) {
 	console.error("Please provide a path to a .json config file");
@@ -22,7 +20,9 @@ const configStr = fs.readFileSync(configFile);
 const config = JSON.parse(configStr);
 process.env.OPENEO_PROCESSES_LINT = configStr;
 
-
+if (config.verbose) {
+	console.log("config:", config);
+}
 
 const jestConfig = {
 	rootDir: __dirname,
@@ -33,7 +33,11 @@ const jestConfig = {
 	verbose: config.verbose || false
 };
 
-runCLI(jestConfig, [ root ])
+if (config.verbose) {
+	console.log("jest config:", jestConfig);
+}
+
+runCLI(jestConfig, [ __dirname ])
   .catch(err => {
     console.error(err);
     process.exitCode = 1;
