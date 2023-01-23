@@ -28,13 +28,17 @@ const root = __dirname;
 const pattern = config.checkSubtypeSchemas ? '<rootDir>/*.test.js' : '<rootDir>/processes.test.js';
 
 const jestConfig = {
-	rootDir: root,
+	config: JSON.stringify({
 	testPathIgnorePatterns: [
-		"<rootDir>/node_modules/"
-	],
+      "<rootDir>/node_modules/"
+    ],
+		haste: {
+			retainAllFiles: true
+		},
 	testMatch: [
 		pattern
 	],
+	}),
 	verbose: config.verbose || false
 };
 
