@@ -1,7 +1,7 @@
 const glob = require('glob');
 const fs = require('fs');
 const path = require('path');
-const { addWordsToSpellcheck, normalizeString, checkDescription, checkSpelling, checkJsonSchema, getAjv, prepareSchema, isObject, getConfig } = require('./testHelpers');
+const { addWordsToSpellcheck, normalizeString, checkDescription, checkSpelling, checkJsonSchema, getAjv, prepareSchema, isObject, getConfig, join } = require('./testHelpers');
 
 const { anyOfRequired, folder, proposalsFolder } = getConfig();
 
@@ -29,10 +29,10 @@ var loader = (file, proposal = false) => {
 var processes = [];
 var processIds = [];
 
-const files = glob.sync(path.join(folder, "*.json"), {realpath: true});
+const files = glob.sync(join(folder, "*.json"), {realpath: true});
 files.forEach(file => loader(file));
 
-const proposals = proposalsFolder ? glob.sync(path.join(proposalsFolder, "*.json"), {realpath: true}) : [];
+const proposals = proposalsFolder ? glob.sync(join(proposalsFolder, "*.json"), {realpath: true}) : [];
 proposals.forEach(file => loader(file, true));
 
 addWordsToSpellcheck(processIds);

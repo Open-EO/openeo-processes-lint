@@ -314,11 +314,16 @@ function checkSchemaRecursive(schema, checkFormat = true) {
 	}
 }
 
+function join(path, pattern) {
+	return path.replace(/\\/g, '/').replace(/\/$/, '') + '/' + pattern;
+}
+
 module.exports = {
 	addWordsToSpellcheck,
 	getAjv,
 	getConfig,
 	getSubtypeSchemas,
+	join,
 	normalizeString,
 	checkDescription,
 	checkSpelling,

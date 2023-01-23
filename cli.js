@@ -24,12 +24,17 @@ if (config.verbose) {
 	console.log("config:", config);
 }
 
+const root = __dirname;
+const pattern = config.checkSubtypeSchemas ? '<rootDir>/*.test.js' : '<rootDir>/processes.test.js';
+
 const jestConfig = {
-	rootDir: __dirname,
-	testMatch: [
-		config.checkSubtypeSchemas ? '<rootDir>/*.test.js' : '<rootDir>/processes.test.js'
+	rootDir: root,
+	testPathIgnorePatterns: [
+		"<rootDir>/node_modules/"
 	],
-	testPathIgnorePatterns: [],
+	testMatch: [
+		pattern
+	],
 	verbose: config.verbose || false
 };
 
@@ -37,7 +42,7 @@ if (config.verbose) {
 	console.log("jest config:", jestConfig);
 }
 
-runCLI(jestConfig, [ __dirname ])
+runCLI(jestConfig, [ root ])
   .catch(err => {
     console.error(err);
     process.exitCode = 1;
