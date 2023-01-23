@@ -30,8 +30,8 @@ const pattern = config.checkSubtypeSchemas ? '<rootDir>/*.test.js' : '<rootDir>/
 const jestConfig = {
 	config: JSON.stringify({
 	testPathIgnorePatterns: [
-      "<rootDir>/node_modules/"
-    ],
+		"<rootDir>/node_modules/"
+	],
 		haste: {
 			retainAllFiles: true
 		},
@@ -47,7 +47,10 @@ if (config.verbose) {
 }
 
 runCLI(jestConfig, [ root ])
-  .catch(err => {
-    console.error(err);
-    process.exitCode = 1;
-  });
+	.then(({results, globalConfig}) => {
+		process.exitCode = !results || results.success ? 0 : globalConfig.testFailureExitCode;
+	})
+	.catch(err => {
+		console.error(err);
+		process.exitCode = 1;
+	});
