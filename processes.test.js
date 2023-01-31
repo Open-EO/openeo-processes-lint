@@ -116,7 +116,7 @@ describe.each(processes)("%s", (file, p, fileContent, proposal) => {
 		// return value schema
 		expect(p.returns.schema).not.toBeNull();
 		expect(typeof p.returns.schema).toBe('object');
-		// lint: Description should not be empty
+		// lint: check schema
 		checkJsonSchema(jsv, p.returns.schema);
 	});
 

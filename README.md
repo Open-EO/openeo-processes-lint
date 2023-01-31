@@ -11,5 +11,6 @@ NPM: [@openeo/processes-lint](https://www.npmjs.com/package/@openeo/processes-li
    * `subtypeSchemas`: Path or URL to a file that includes the subtype schemas, defaults to `https://processes.openeo.org/meta/subtype-schemas.json`
    * `checkSubtypeSchemas`: Enable or disable running checks against the subtype schemas. Defaults to `false` (disabled).
    * `forbidDeprecatedTypes`: Set to `true` to disallow deprecated subtypes such as `raster-cube` and `vector-cube`. Defaults to `false` (disabled).
+   * `checkProcessLinks`: Set to `true` to validate whether the links to processes in descriptions are valid (i.e. the files exist). Defaults to `false` (disabled).
    * `verbose`: Verbose output for tests. Defaults to `false` (disabled).
 2. Run `npx @openeo/processes-lint testConfig.json`

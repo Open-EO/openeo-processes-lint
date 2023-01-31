@@ -245,7 +245,7 @@ function checkDescription(text, p = null, processIds = [], commonmark = true) {
 	checkSpelling(text, p);
 
 	// Check whether process references are referencing valid processes
-	if (Array.isArray(processIds) && processIds.length > 0) {
+	if (config.checkProcessLinks && Array.isArray(processIds) && processIds.length > 0) {
 		let matches = text.matchAll(/(?:^|[^\w`])``(\w+)\(\)``(?![\w`])/g);
 		for(match of matches) {
 			expect(processIds).toContain(match[1]);
