@@ -176,7 +176,7 @@ async function getAjv() {
 						properties: {
 							type: {
 								type: "string",
-								const: "geometries"
+								const: "geometry"
 							},
 							geometry_type: {
 								type: "array",
